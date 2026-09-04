@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QA Documentation - Comprehensive Web Application & Integration Test Suite</title>
+    <style>
+        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; margin: 24px; background-color: #f8fafc; color: #0f172a; line-height: 1.5; }
+        h1 { color: #1e293b; border-bottom: 3px solid #0284c7; padding-bottom: 10px; margin-bottom: 8px; }
+        .subtitle { color: #64748b; font-size: 0.95rem; margin-bottom: 24px; }
+        
+        .section-header { background: #0284c7; color: white; padding: 10px 16px; border-radius: 6px 6px 0 0; font-size: 1.1rem; font-weight: bold; margin-top: 36px; }
+        
+        /* Tables */
+        table { width: 100%; border-collapse: collapse; margin-bottom: 24px; font-size: 0.85rem; background: white; box-shadow: 0 1px 3px rgba(0,0,0,0.1); border-radius: 0 0 6px 6px; overflow: hidden; }
+        th { background-color: #f1f5f9; color: #334155; padding: 10px 12px; text-align: left; border: 1px solid #cbd5e1; font-weight: 600; }
+        td { padding: 10px 12px; border: 1px solid #e2e8f0; vertical-align: top; }
+        tr:nth-child(even) { background-color: #f8fafc; }
+        
+        /* Badges & Statuses */
+        .pass { background: #dcfce7; color: #15803d; padding: 3px 8px; border-radius: 4px; font-weight: bold; display: inline-block; }
+        .fail { background: #fee2e2; color: #b91c1c; padding: 3px 8px; border-radius: 4px; font-weight: bold; display: inline-block; }
+        .badge-danger { background: #fee2e2; color: #991b1b; padding: 3px 8px; border-radius: 4px; font-weight: bold; font-size: 0.75rem; }
+        .badge-warning { background: #fef3c7; color: #92400e; padding: 3px 8px; border-radius: 4px; font-weight: bold; font-size: 0.75rem; }
+        
+        /* Defect Cards */
+        .defect-card { background-color: #ffffff; border: 1px solid #e2e8f0; border-left: 6px solid #ef4444; padding: 20px; margin-bottom: 28px; border-radius: 8px; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05); }
+        .defect-header { display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid #f1f5f9; padding-bottom: 10px; margin-bottom: 14px; flex-wrap: wrap; gap: 8px; }
+        .defect-header h3 { margin: 0; color: #0f172a; font-size: 1.05rem; }
+        
+        .trace-box { background-color: #0f172a; color: #f8fafc; padding: 12px 16px; border-radius: 6px; font-family: "Courier New", Courier, monospace; font-size: 0.8rem; margin: 12px 0; border-left: 4px solid #f87171; overflow-x: auto; }
+        .evidence-container { margin-top: 14px; background: #f1f5f9; padding: 12px; border-radius: 6px; border: 1px solid #cbd5e1; }
+        .evidence-img { max-width: 100%; height: auto; border: 1px solid #cbd5e1; border-radius: 4px; display: block; margin: 0 auto; }
+        .caption { font-size: 0.75rem; color: #64748b; text-align: center; margin-top: 8px; font-style: italic; }
+        .recommendation { background-color: #eff6ff; border: 1px solid #bfdbfe; padding: 10px 14px; border-radius: 6px; font-size: 0.85rem; color: #1e40af; margin-top: 12px; }
+    </style>
+</head>
+<body>
+
+    <h1>Software Quality Assurance Documentation</h1>
+    <div class="subtitle">
+        <strong>Target Role:</strong> QA Application Tester (The Perfect Child LLC) &nbsp;|&nbsp; 
+        <strong>System Architecture:</strong> Softr (Web Portal) + Make.com (Workflow Automation) + Airtable (Relational Database) &nbsp;|&nbsp; 
+        <strong>Environment:</strong> Web Application / Chrome Staging v125
+    </div>
+
+    <!-- MODULE 1: TEST STRATEGY & MATRIX -->
+    <div class="section-header">Module 1: Test Strategy & System Execution Matrix</div>
+    <table>
+        <thead>
+            <tr>
+                <th style="width: 15%;">Test Suite ID</th>
+                <th style="width: 20%;">Target Software / Layer</th>
+                <th style="width: 30%;">Testing Scope & Objectives</th>
+                <th style="width: 20%;">Execution Methodology</th>
+                <th style="width: 15%;">Total Scenarios</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><strong>TS-SOFTR-01</strong></td>
+                <td>Softr (Frontend Portal)</td>
+                <td>User onboarding, form validation, file attachments, and role-based page access controls.</td>
+                <td>Manual Functional & GUI Testing</td>
+                <td>5 Executed</td>
+            </tr>
+            <tr>
+                <td><strong>TS-MAKE-02</strong></td>
+                <td>Make.com (Integration/API)</td>
+                <td>Webhook payload parsing, data transformations, multi-step scenario execution, and timeout limits.</td>
+                <td>Integration & API Testing</td>
+                <td>4 Executed</td>
+            </tr>
+            <tr>
+                <td><strong>TS-AIRTABLE-03</strong></td>
+                <td>Airtable (Backend DB)</td>
+                <td>Field type constraints, record persistence, linked relationships, and orphan record validation.</td>
+                <td>Database Integrity Testing</td>
+                <td>3 Executed</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <!-- MODULE 2: DETAILED TEST CASES -->
+    <div class="section-header">Module 2: Functional & Integration Test Cases</div>
+    <table>
+        <thead>
+            <tr>
+                <th style="width: 8%;">Test ID</th>
+                <th style="width: 10%;">Component</th>
+                <th style="width: 18%;">Test Scenario</th>
+                <th style="width: 22%;">Steps to Execute</th>
+                <th style="width: 22%;">Expected Result</th>
+                <th style="width: 10%;">Result</th>
+                <th style="width: 10%;">Defect Ref</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>TC-WEB-001</td>
+                <td>Softr Form</td>
+                <td>Verify mandatory field error handling on service booking form</td>
+                <td>1. Open Request Portal.<br>2. Leave "Client Name" empty.<br>3. Click Submit.</td>
+                <td>Form submission blocked; red inline error message displayed.</td>
+                <td><span class="pass">PASS</span></td>
+                <td>N/A</td>
+            </tr>
+            <tr>
+                <td>TC-WEB-002</td>
+                <td>Softr Portal</td>
+                <td>Verify Role-Based Access Control (RBAC) on Admin Dashboard</td>
+                <td>1. Log in as regular Client account.<br>2. Attempt direct navigation to <code>/admin-metrics</code>.</td>
+                <td>Access denied; user redirected to 403 unauthorized page.</td>
+                <td><span class="pass">PASS</span></td>
+                <td>N/A</td>
+            </tr>
+            <tr>
+                <td>TC-INT-001</td>
+                <td>Make.com / Airtable</td>
+                <td>Validate date field mapping between incoming Webhook and Airtable Base</td>
+                <td>1. Submit date picker input via Softr form.<br>2. Inspect Make.com Airtable module execution.</td>
+                <td>Date parsed into ISO-8601 format and written cleanly to database record.</td>
+                <td><span class="fail">FAIL</span></td>
+                <td>DEF-001</td>
+            </tr>
+            <tr>
+                <td>TC-INT-002</td>
+                <td>Make.com / Airtable</td>
+                <td>Verify multi-select choice parsing for "Services Required" field</td>
+                <td>1. Select multiple checkboxes under "Services Required".<br>2. Submit form and inspect scenario logs.</td>
+                <td>Make.com converts array items into valid Airtable select options.</td>
+                <td><span class="fail">FAIL</span></td>
+                <td>DEF-002</td>
+            </tr>
+            <tr>
+                <td>TC-DB-001</td>
+                <td>Airtable DB</td>
+                <td>Verify record persistence across linked relational tables</td>
+                <td>1. Create new project request.<br>2. Query Tasks table in Airtable for linked Client Record ID.</td>
+                <td>Task is automatically linked to correct parent Client record without orphan data.</td>
+                <td><span class="pass">PASS</span></td>
+                <td>N/A</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <!-- MODULE 3: DEFECT REPORTS (WITH SCREENSHOT EVIDENCE) -->
+    <div class="section-header">Module 3: Defect & Execution Error Reports</div>
+    
+    <!-- DEF-001 -->
+    <div class="defect-card">
+        <div class="defect-header">
+            <h3>[DEF-001] Make.com Scenario Fails with BundleValidationError on Airtable Date Field Mapping</h3>
+            <div>
+                <span class="badge-danger">Severity: High</span>
+                <span class="badge-warning">Priority: High</span>
+            </div>
+        </div>
+        <table>
+            <tr>
+                <td style="font-weight:bold; width: 15%;">Subsystem:</td>
+                <td>Integration Pipeline (Make.com Webhook → Airtable API)</td>
+                <td style="font-weight:bold; width: 15%;">Environment:</td>
+                <td>Staging / Make.com Scenario Execution Engine</td>
+            </tr>
+            <tr>
+                <td style="font-weight:bold;">Reporter:</td>
+                <td>QA Application Tester</td>
+                <td style="font-weight:bold;">Status:</td>
+                <td style="color: #ef4444; font-weight: bold;">OPEN (Defect Logged)</td>
+            </tr>
+        </table>
+        <div style="font-size: 0.88rem; color: #334155;">
+            <p><strong>Description:</strong> Executing the service request workflow triggers a <code>BundleValidationError</code> on the Airtable Create/Update Record module due to an unparsed date parameter passed from the custom webhook JSON payload.</p>
+            <p><strong>Steps to Reproduce:</strong></p>
+            <ol style="margin-left: 20px; padding-left: 0;">
+                <li>Submit the Softr request form with a date input selected.</li>
+                <li>Trigger the HTTP payload via <code>Custom Webhooks</code> module to Make.com.</li>
+                <li>Inspect Module #2 (Airtable Record Creation) execution details in Make.com inspector.</li>
+            </ol>
+            <p><strong>Expected Result:</strong> Make.com formats the raw date string into an ISO-8601 compliant date before passing to Airtable (<code>200 OK</code> / <code>Record Created</code>).</p>
+            <p><strong>Actual Result:</strong> Airtable module throws <code>Code: BundleValidationError</code> with error message: <i>"A required field is empty or in the wrong format. Validation failed for 1 parameter(s). Invalid date in parameter 'fldA0icVPxAAPPsxe'."</i></p>
+        </div>
+        <div class="trace-box">
+            <strong>[Execution Trace Log - Make.com Inspector]</strong><br>
+            Module: Airtable (Create/Update Record)<br>
+            Error Type: BundleValidationError<br>
+            Failed Parameter: fldA0icVPxAAPPsxe (Target: Date Field)<br>
+            Summary: 1 operation attempted | 1 credit used | 0 bundles generated
+        </div>
+        <div class="evidence-container">
+            <img src="image_c58d66.png" alt="Make.com Airtable BundleValidationError Screenshot" class="evidence-img">
+            <p class="caption">Figure 1.1: Make.com scenario execution inspector showing BundleValidationError on field fldA0icVPxAAPPsxe (image_c58d66.png).</p>
+        </div>
+        <div class="recommendation">
+            <strong>QA Remediation Note:</strong> Wrap the mapped field with a <code>formatDate()</code> inline function inside Make.com or configure a fallback error handler route to handle unparseable dates gracefully.
+        </div>
+    </div>
+
+    <!-- DEF-002 -->
+    <div class="defect-card">
+        <div class="defect-header">
+            <h3>[DEF-002] Make.com Scenario Throws HTTP 422 RuntimeError on Airtable 'Services Required' Field</h3>
+            <div>
+                <span class="badge-danger">Severity: High</span>
+                <span class="badge-warning">Priority: High</span>
+            </div>
+        </div>
+        <table>
+            <tr>
+                <td style="font-weight:bold; width: 15%;">Subsystem:</td>
+                <td>Data Ingestion Pipeline (Softr Form → Make.com Router → Airtable Base)</td>
+                <td style="font-weight:bold; width: 15%;">Environment:</td>
+                <td>Staging / Make.com Scenario Execution Engine</td>
+            </tr>
+            <tr>
+                <td style="font-weight:bold;">Reporter:</td>
+                <td>QA Application Tester</td>
+                <td style="font-weight:bold;">Status:</td>
+                <td style="color: #ef4444; font-weight: bold;">OPEN (Defect Logged)</td>
+            </tr>
+        </table>
+        <div style="font-size: 0.88rem; color: #334155;">
+            <p><strong>Description:</strong> Submitting multi-select option values from the web portal form causes an unhandled HTTP 422 error at the Airtable API mapping step due to parameter string format mismatches.</p>
+            <p><strong>Steps to Reproduce:</strong></p>
+            <ol style="margin-left: 20px; padding-left: 0;">
+                <li>Log into the Softr Client Request Portal.</li>
+                <li>Select multiple options under the <strong>Services Required</strong> field and click Submit.</li>
+                <li>Inspect Make.com scenario execution status at Module #2.</li>
+            </ol>
+            <p><strong>Expected Result:</strong> Make.com parses array strings into valid Airtable option choices, successfully creating a record (<code>HTTP 200 OK</code>).</p>
+            <p><strong>Actual Result:</strong> Airtable API returns an HTTP 422 error: <i>"[422] Cannot parse value for field Services Required. Code: RuntimeError. Origin: Airtable"</i>.</p>
+        </div>
+        <div class="trace-box">
+            <strong>[Execution Trace Log - Airtable API Module]</strong><br>
+            HTTP Status: 422 Unprocessable Entity<br>
+            Error Type: RuntimeError | Origin: Airtable API Response<br>
+            Details: Cannot parse value for field 'Services Required'<br>
+            Summary: 1 operation attempted | 1 credit used | 0 bundles generated
+        </div>
+        <div class="evidence-container">
+            <img src="image_c58da3.png" alt="Make.com 422 RuntimeError Screenshot" class="evidence-img">
+            <p class="caption">Figure 2.1: Make.com inspector showing HTTP 422 RuntimeError on 'Services Required' field mapping (image_c58da3.png).</p>
+        </div>
+        <div class="recommendation">
+            <strong>QA Remediation Note:</strong> Use the <code>split()</code> formula in Make.com to convert comma-separated string payloads into an explicit Array collection that Airtable accepts for multi-select fields.
+        </div>
+    </div>
+
+</body>
+</html>
